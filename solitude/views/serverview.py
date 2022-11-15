@@ -1,7 +1,10 @@
 from rest_framework import viewsets
 from django.http import HttpResponse
+from django.core import serializers
+from solitude.models.servermodel import Server
 
-class ServerView(viewsets.ViewSet):
+from solitude.serializers.serverserializer import ServerSerializer
 
-    def list(self, request):
-        return HttpResponse('test')
+class ServerView(viewsets.ModelViewSet):
+    queryset = Server.objects.all()
+    serializer_class = ServerSerializer

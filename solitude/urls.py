@@ -22,11 +22,12 @@ from rest_framework_simplejwt.views import (
 )
 
 from solitude.views.topicview import TopicView
+from solitude.views.serverview import ServerView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/server/<int:server_id>/topics', TopicView.as_view({'get': 'list'}), name='topic_list'),
-    path('api/server/list', TopicView.as_view({'get': 'list'}), name='topic_list'),
+    path('api/server/list', ServerView.as_view({'get': 'list'}), name='server_list'),
 ]
