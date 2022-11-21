@@ -16,18 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
-
 from solitude.views.topicview import TopicView
-from solitude.views.serverview import ServerView
+from solitude.views.brokerview import BrokerView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/server/<int:server_id>/topics', TopicView.as_view({'get': 'list'}), name='topic_list'),
-    path('api/server/list', ServerView.as_view({'get': 'list'}), name='server_list'),
+    path('cluster/<int:cluster_id>/brokers', BrokerView.as_view({'get': 'list_brokers'}), name='cluster_broker_list'),
+    path('cluster/<int:cluster_id>/topics', BrokerView.as_view({'get': 'list_topics'}), name='cluster_topic_list'),
+    path('cluster/<int:cluster_id>/consumers', BrokerView.as_view({'get': 'list_consumers'}), name='cluster_consumer_list'),
+    path('broker/<int:broker_id>/topic/new', BrokerView.as_view({'get': 'new_topic'}), name='cluster_consumer_list'),
+    path('topic/<int:topic_id>/partitions', BrokerView.as_view({'get': 'new_partition'}), name='topic_partition_list'),
 ]

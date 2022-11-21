@@ -1,2 +1,2 @@
-from .servermodel import Server
-from .serveradminmodel import ServerAdmin
+from .clustermodel import Cluster
+from .clusteradminmodel import ClusterAdmin

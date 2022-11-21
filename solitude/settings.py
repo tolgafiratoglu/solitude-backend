@@ -68,6 +68,10 @@ REST_FRAMEWORK = {
     )
 }
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'solitude.context_processors.cluster_context',
+)
+
 ROOT_URLCONF = 'solitude.urls'
 
 TEMPLATES = [
