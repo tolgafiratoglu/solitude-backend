@@ -1,0 +1,32 @@
+{% extends 'base_template.html' %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Host</th>
+            <th scope="col">Port</th>
+            <th scope="col">Rack</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for broker in brokers %}
+            <tr>
+                <td>
+                    {{ broker.nodeId }}
+                </td>
+                <td>
+                    {{ broker.host }}
+                </td>
+                <td>
+                    {{ broker.port }}
+                </td>    
+                <td>
+                    {{ broker.rack }}
+                </td>
+            </tr>    
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

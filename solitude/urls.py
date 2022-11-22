@@ -16,14 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from solitude.views.topicview import TopicView
+from solitude.views.clusterview import ClusterView
 from solitude.views.brokerview import BrokerView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cluster/<int:cluster_id>/brokers', BrokerView.as_view({'get': 'list_brokers'}), name='cluster_broker_list'),
-    path('cluster/<int:cluster_id>/topics', BrokerView.as_view({'get': 'list_topics'}), name='cluster_topic_list'),
-    path('cluster/<int:cluster_id>/consumers', BrokerView.as_view({'get': 'list_consumers'}), name='cluster_consumer_list'),
-    path('broker/<int:broker_id>/topic/new', BrokerView.as_view({'get': 'new_topic'}), name='cluster_consumer_list'),
-    path('topic/<int:topic_id>/partitions', BrokerView.as_view({'get': 'new_partition'}), name='topic_partition_list'),
+    path('cluster/<str:host>/<int:port>/brokers', ClusterView.as_view({'get': 'list_brokers'}), name='cluster_broker_list'),
+    path('broker/<str:host>/<int:port>/topics', BrokerView.as_view({'get': 'list_topics'}), name='cluster_topic_list'),
+    path('broker/<str:host>/<int:port>/topic/new', BrokerView.as_view({'get': 'create_topic'}), name='create_new_topic'),
+    path('broker/<str:host>/<int:port>/topic/save', BrokerView.as_view({'post': 'save_topic'}), name='save_new_topic'),
 ]

@@ -1,5 +1,5 @@
 from rest_framework import generics, viewsets, status
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse
 
 import kafka
 from kafka.admin import KafkaAdminClient, NewTopic
