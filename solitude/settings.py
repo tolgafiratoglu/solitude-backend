@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-z*r+duhe0#$ow0h%$$ap%8sty2pwc#03^(t=qnrgg@swsz*o0*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -60,17 +60,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
-}
+CORS_ORIGIN_ALLOW_ALL=True
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'solitude.context_processors.cluster_context',
-)
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',)
+}
 
 ROOT_URLCONF = 'solitude.urls'
 

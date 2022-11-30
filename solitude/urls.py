@@ -19,10 +19,16 @@ from django.urls import path
 from solitude.views.clusterview import ClusterView
 from solitude.views.brokerview import BrokerView
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cluster/<str:host>/<int:port>/brokers', ClusterView.as_view({'get': 'list_brokers'}), name='cluster_broker_list'),
-    path('broker/<str:host>/<int:port>/topics', BrokerView.as_view({'get': 'list_topics'}), name='cluster_topic_list'),
-    path('broker/<str:host>/<int:port>/topic/new', BrokerView.as_view({'get': 'create_topic'}), name='create_new_topic'),
-    path('broker/<str:host>/<int:port>/topic/save', BrokerView.as_view({'post': 'save_topic'}), name='save_new_topic'),
+    path('api/cluster/<str:bootstrap_server>/brokers', ClusterView.as_view({'get': 'list_brokers'}), name='cluster_broker_list'),
+    path('api/broker/<str:bootstrap_server>/topics', BrokerView.as_view({'get': 'list_topics'}), name='cluster_topic_list'),
+    path('api/broker/<str:bootstrap_server>/topic/save', BrokerView.as_view({'post': 'save_topic'}), name='save_new_topic'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
