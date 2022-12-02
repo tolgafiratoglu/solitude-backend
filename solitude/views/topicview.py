@@ -1,17 +1,19 @@
 from rest_framework import viewsets
-from django.http import HttpResponse
-import kafka
-from kafka.admin import KafkaAdminClient, NewTopic
+from solitude.services.kafkaadminservice import KafkaAdminService
 
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
+from django.http import JsonResponse
 
 class TopicView(viewsets.ViewSet):
+    permission_classes = (IsAuthenticated, )
+    authentication_classes = (JWTAuthentication, )
 
-    @method_decorator(login_required(login_url='/login'))
-    def list(self, request, server_id):
-        kafka_consumer = kafka.KafkaConsumer(
-            bootstrap_servers=['localhost:9092'],
-            client_id="python-test-consumer"
-        )
-        return HttpResponse(server_id)
+    def create_partials(self, request, topic):
+        number_of_partials = request.POST.get('number_of_partials')
+        try:
+            KafkaAdminService.create_partial(topic=topic, number_of_new_partitions=number_of_partials)
+            return JsonResponse({'status': 'success', 'message': number_of_partials + 'saved on topic: ' + topic})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)})
