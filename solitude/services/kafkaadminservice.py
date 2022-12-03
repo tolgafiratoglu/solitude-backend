@@ -13,9 +13,9 @@ class KafkaAdminService():
         admin_client.create_topics(new_topics=topic_list, validate_only=False)
 
     @classmethod
-    def create_partial(self, host, topic, number_of_new_partitions):
+    def create_partitions(self, host, topic, number_of_new_partitions):
         admin_client = self.get_admin_client(host)
         return admin_client.create_partitions({
-            topic : NewPartitions(number_of_new_partitions)
+            topic : NewPartitions(int(number_of_new_partitions))
         })
         

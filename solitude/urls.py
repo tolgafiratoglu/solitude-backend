@@ -19,6 +19,7 @@ from django.urls import path
 from solitude.views.clusterview import ClusterView
 from solitude.views.brokerview import BrokerView
 from solitude.views.topicview import TopicView
+from solitude.views.userview import UserView
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -27,6 +28,7 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/current-user', UserView.as_view({'get': 'current_user'}), name='current_user'),
     path('api/clusters', ClusterView.as_view({'get': 'list_clusters'}), name='cluster_list'),
     path('api/cluster/<int:cluster_id>/brokers', ClusterView.as_view({'get': 'list_brokers'}), name='cluster_broker_list'),
     path('api/broker/<int:broker_id>/topics', BrokerView.as_view({'get': 'list_topics'}), name='cluster_topic_list'),
