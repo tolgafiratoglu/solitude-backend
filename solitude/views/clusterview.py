@@ -11,6 +11,9 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from solitude.services.brokerservice import BrokerService
 
+from solitude.services.clusterservice import ClusterService
+from solitude.services.kafkaservice import KafkaService
+
 class ClusterView(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated, )
     authentication_classes = (JWTAuthentication, )
@@ -24,6 +27,11 @@ class ClusterView(viewsets.ModelViewSet):
             cluster_obj['brokers'] = BrokerService.get_cluster_brokers(cluster.pk)
             clusterList.append(cluster_obj)
         return JsonResponse(clusterList, safe=False)
+
+    def list_topics(self, request, cluster_id):
+        broker_servers = ClusterService.get_cluster_brokers(cluster_id)
+        topics = KafkaService.get_topics(broker_servers)
+        return JsonResponse(topics, safe=False)    
 
     def list_brokers(self, request, cluster_id):
         brokers = Broker.objects.filter(cluster=cluster_id).filter(active=True).all()

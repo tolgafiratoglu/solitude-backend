@@ -5,12 +5,12 @@ from django.forms.models import model_to_dict
 
 class BrokerService():
 
-    def get_broker_by_id(broker_id):
-        return Broker.objects.filter(id=broker_id).first()
+    def get_broker_by_id(cluster_id):
+        return Broker.objects.filter(cluster_id=cluster_id).first()
 
     @classmethod
-    def get_broker_url(self, broker_id):
-        broker = self.get_broker_by_id(broker_id)
+    def get_broker_servers(self, cluster_id):
+        broker = self.get_broker_by_id(cluster_id)
         if broker is not None:
             return broker.host + ':' + str(broker.port)
         return ''
