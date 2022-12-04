@@ -29,6 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/current-user', UserView.as_view({'get': 'current_user'}), name='current_user'),
     path('api/clusters', ClusterView.as_view({'get': 'list_clusters'}), name='cluster_list'),
+    path('api/cluster/<int:cluster_id>', ClusterView.as_view({'get': 'get_info'}), name='get_cluster'),
     path('api/cluster/<int:cluster_id>/brokers', ClusterView.as_view({'get': 'list_brokers'}), name='cluster_broker_list'),
     path('api/cluster/<int:cluster_id>/topics', ClusterView.as_view({'get': 'list_topics'}), name='cluster_topic_list'),
     path('api/cluster/<int:cluster_id>/topic/save', TopicView.as_view({'post': 'save_topic'}), name='save_new_topic'),

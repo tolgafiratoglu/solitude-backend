@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from solitude.models.brokermodel import Broker
 from solitude.models.clustermodel import Cluster
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseBadRequest, HttpResponse
 
 from django.forms.models import model_to_dict
 from django.db.models import Count
@@ -13,6 +13,10 @@ from solitude.services.brokerservice import BrokerService
 
 from solitude.services.clusterservice import ClusterService
 from solitude.services.kafkaservice import KafkaService
+
+from solitude.serializers.clusterserializer import ClusterSerializer
+
+import json
 
 class ClusterView(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated, )
@@ -39,3 +43,13 @@ class ClusterView(viewsets.ModelViewSet):
         for broker in brokers:
             brokerList.append(model_to_dict(broker))
         return JsonResponse(brokerList, safe=False)
+
+    def get_info(self, request, cluster_id):
+        response_data = {'status': 'success', 'data': []}
+        cluster_query = Cluster.objects.filter(id=cluster_id).filter(active=True).first()
+        cluster_serializer = ClusterSerializer(cluster_query, many=False)
+        if cluster_serializer.data is None:
+            response_data["error"] = cluster_serializer.errors
+            return HttpResponseBadRequest(json.dumps(response_data))    
+        response_data['data'] = cluster_serializer.data    
+        return HttpResponse(json.dumps(cluster_serializer.data))
