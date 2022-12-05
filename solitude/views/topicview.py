@@ -1,6 +1,6 @@
 from rest_framework import viewsets
+from solitude.services.kafkaservice import KafkaService
 from solitude.services.kafkaadminservice import KafkaAdminService
-from solitude.services.brokerservice import BrokerService
 from solitude.services.clusterservice import ClusterService
 
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
@@ -8,9 +8,17 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
 
+from django.forms.models import model_to_dict
+
 class TopicView(viewsets.ViewSet):
     permission_classes = (IsAuthenticated, IsAdminUser, )
     authentication_classes = (JWTAuthentication, )
+
+    def get_topic(self, request, cluster_id, topic):
+        bootstrap_servers = ClusterService.get_cluster_brokers(cluster_id)
+        partitions = KafkaService.get_topic_partitions(topic=topic, bootstrap_servers=bootstrap_servers)
+        
+        return JsonResponse({"status": "success", "num_partitions": len(partitions)})
 
     def save_topic(self, request, cluster_id):
         topic_title = request.POST.get('topic_title', '')
