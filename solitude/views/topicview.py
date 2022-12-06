@@ -13,7 +13,6 @@ from django.forms.models import model_to_dict
 
 from rest_framework.decorators import action
 
-
 class TopicView(viewsets.ViewSet):
     permission_classes = (IsAuthenticated, IsAdminUser, )
     authentication_classes = (JWTAuthentication, )
@@ -24,7 +23,7 @@ class TopicView(viewsets.ViewSet):
         
         return JsonResponse({"status": "success", "num_partitions": len(partitions)})
 
-    def save_topic(self, request, cluster_id):
+    def save(self, request, cluster_id):
         topic_title = request.POST.get('topic_title', '')
         topic_partition = int(request.POST.get('topic_partition_number', ''))
         topic_replication_factor =int(request.POST.get('topic_replication_factor', ''))
