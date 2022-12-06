@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+
 from solitude.services.kafkaservice import KafkaService
 from solitude.services.kafkaadminservice import KafkaAdminService
 from solitude.services.clusterservice import ClusterService
@@ -9,6 +10,9 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
 
 from django.forms.models import model_to_dict
+
+from rest_framework.decorators import action
+
 
 class TopicView(viewsets.ViewSet):
     permission_classes = (IsAuthenticated, IsAdminUser, )
