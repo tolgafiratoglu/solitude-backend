@@ -6,7 +6,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.http import HttpResponse, HttpResponseBadRequest
 
 from django.contrib.auth.models import User
-from solitude.serializers.currentuserserializer import CurrentUserSerializer
+from api.serializers.currentuserserializer import CurrentUserSerializer
 
 import json
 

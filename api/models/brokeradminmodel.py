@@ -1,5 +1,5 @@
 from django.contrib import admin
-from solitude.models.brokermodel import Broker
+from api.models.brokermodel import Broker
 
 class BrokerAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):

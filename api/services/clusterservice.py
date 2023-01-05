@@ -1,4 +1,4 @@
-from solitude.models.brokermodel import Broker
+from api.models.brokermodel import Broker
 
 class ClusterService():
 

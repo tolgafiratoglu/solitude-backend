@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 
-from solitude.services.kafkaservice import KafkaService
-from solitude.services.kafkaadminservice import KafkaAdminService
-from solitude.services.clusterservice import ClusterService
+from api.services.kafkaservice import KafkaService
+from api.services.kafkaadminservice import KafkaAdminService
+from api.services.clusterservice import ClusterService
 
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework_simplejwt.authentication import JWTAuthentication

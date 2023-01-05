@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
-from solitude.models import Cluster
+from api.models import Cluster
 
 class Broker(models.Model):
     managed = True

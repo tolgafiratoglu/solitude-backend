@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from solitude.models.brokermodel import Broker
-from solitude.models.clustermodel import Cluster
+from api.models.brokermodel import Broker
+from api.models.clustermodel import Cluster
 from django.http import JsonResponse, HttpResponseBadRequest, HttpResponse
 
 from django.forms.models import model_to_dict
@@ -9,12 +9,12 @@ from django.db.models import Count
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-from solitude.services.brokerservice import BrokerService
+from api.services.brokerservice import BrokerService
 
-from solitude.services.clusterservice import ClusterService
-from solitude.services.kafkaservice import KafkaService
+from api.services.clusterservice import ClusterService
+from api.services.kafkaservice import KafkaService
 
-from solitude.serializers.clusterserializer import ClusterSerializer
+from api.serializers.clusterserializer import ClusterSerializer
 
 import json
 

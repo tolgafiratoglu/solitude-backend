@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from solitude.models.clustermodel import Cluster
+from api.models.clustermodel import Cluster
 
 class ClusterSerializer(serializers.ModelSerializer):
     class Meta:

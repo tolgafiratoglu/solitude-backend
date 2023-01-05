@@ -1,5 +1,5 @@
-from solitude.models.brokermodel import Broker
-from solitude.services.kafkaservice import KafkaService
+from api.models.brokermodel import Broker
+from api.services.kafkaservice import KafkaService
 
 from django.forms.models import model_to_dict
 

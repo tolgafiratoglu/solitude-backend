@@ -1,5 +1,5 @@
 from django.contrib import admin
-from solitude.models.clustermodel import Cluster
+from api.models.clustermodel import Cluster
 
 class ClusterAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):

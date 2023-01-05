@@ -14,27 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
-from solitude.views.clusterview import ClusterView
-from solitude.views.topicview import TopicView
-from solitude.views.userview import UserView
-
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/current-user', UserView.as_view({'get': 'current_user'}), name='current_user'),
-    path('api/clusters', ClusterView.as_view({'get': 'list_clusters'}), name='cluster_list'),
-    path('api/cluster/<int:cluster_id>', ClusterView.as_view({'get': 'get_info'}), name='get_cluster'),
-    path('api/cluster/<int:cluster_id>/brokers', ClusterView.as_view({'get': 'list_brokers'}), name='cluster_broker_list'),
-    path('api/cluster/<int:cluster_id>/topics', ClusterView.as_view({'get': 'list_topics'}), name='cluster_topic_list'),
-    path('api/cluster/<int:cluster_id>/topic/save', TopicView.as_view({'post': 'save'}), name='save_topic'),
-    path('api/cluster/<int:cluster_id>/topic/<str:topic>', TopicView.as_view({'get': 'get_topic'}), name='get_topic'),
-    path('api/cluster/<int:cluster_id>/<str:topic>/partition/create', TopicView.as_view({'post': 'create_partials'}), name='create_partials'),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('', include('api.urls')),
 ]
