@@ -20,7 +20,6 @@ class TopicView(viewsets.ViewSet):
     def get_topic(self, request, cluster_id, topic):
         bootstrap_servers = ClusterService.get_cluster_brokers(cluster_id)
         partitions = KafkaService.get_topic_partitions(topic=topic, bootstrap_servers=bootstrap_servers)
-        
         return JsonResponse({"status": "success", "num_partitions": len(partitions)})
 
     def save(self, request, cluster_id):
