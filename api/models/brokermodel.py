@@ -5,7 +5,7 @@ from api.models import Cluster
 
 class Broker(models.Model):
     managed = True
-    created_by = models.ForeignKey(get_user_model(), unique=True, editable=False, on_delete=models.DO_NOTHING, default=None, blank=True, null=True)
+    created_by = models.ForeignKey(get_user_model(), unique=False, editable=False, on_delete=models.DO_NOTHING, default=None, blank=True, null=True)
     cluster = models.ForeignKey(Cluster, unique=False, editable=True, on_delete=models.DO_NOTHING, default=None, blank=True, null=True)
     title = models.CharField(max_length=255, default='', null=False, blank=False)
     host = models.CharField(max_length=255, default='', null=False, blank=False)
