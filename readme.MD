@@ -23,3 +23,8 @@ In solutide, you'll need to define clusters and brokers from admin panel.
 After this step, you'll be able to view topics, create topics, partitions and/or create additional partitions for topics. 
 
 Note that: Creating topics and adding new partitions are limited with the admin user.
+
+6. Creating application secret.
+Copy paste .env.local as .env. You will need to add a new secret has to your application:
+
+<code>python3 -c 'import secrets; print(secrets.token_hex(100))'</code>
