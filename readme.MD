@@ -25,6 +25,6 @@ After this step, you'll be able to view topics, create topics, partitions and/or
 Note that: Creating topics and adding new partitions are limited with the admin user.
 
 6. Creating application secret.
-Copy paste .env.local as .env. You will need to add a new secret has to your application:
-
+Copy paste .env.local as .env. You will need to add a new secret has to your application. 
 <code>python3 -c 'import secrets; print(secrets.token_hex(100))'</code>
+Get the output string and add it to your .env file. 
