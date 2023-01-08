@@ -1,4 +1,5 @@
-<b>Solitude</b> is a practice project, an open source Kafka GUI based on Django and React/Hooks. Solitude is a practice project, developed for educational purposes. Solitude doesn't support brokers and topics with authentication and not intented to be used in production environment. 
+<b>Solitude</b> is a practice project, an open source Kafka GUI based on Django and React/Hooks. Please refer <a href="https://github.com/tolgafiratoglu/solitude">main package</a> for more.
+Solitude is a practice project, developed for educational purposes. Solitude doesn't support brokers and topics with authentication and not intented to be used in production environment. 
 
 <h1>Installation</h1>
 After clonning the repository:
