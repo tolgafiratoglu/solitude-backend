@@ -7,16 +7,23 @@ After clonning the repository:
 1. We suggest you to create a virtual environment
 2. Install reqiurements:
 
-<code>pip install -r requirements.txt</code>
+```
+pip install -r requirements.txt
+```
 
 3. Create a super user:
 You need to create first super user, which will be able to access admin panel.
-<code>python3 manage.py createsuperuser</code>
+
+```
+python3 manage.py createsuperuser
+```
 
 4. Run server:
 When you run server, admin and api will be up, if migrations are ready.
 
-<code>python3 manage.py runserver</code>
+```
+python3 manage.py runserver
+```
 
 5. Add clusters and brokers from admin:
 In solutide, you'll need to define clusters and brokers from admin panel. 
@@ -27,5 +34,9 @@ Note that: Creating topics and adding new partitions are limited with the admin 
 
 6. Creating application secret.
 Copy paste .env.local as .env. You will need to add a new secret has to your application. 
-<code>python3 -c 'import secrets; print(secrets.token_hex(100))'</code>
+
+```
+python3 -c 'import secrets; print(secrets.token_hex(100))'
+```
+
 Get the output string and add it to your .env file. 
