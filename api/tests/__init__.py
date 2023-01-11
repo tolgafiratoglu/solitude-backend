@@ -1,3 +1,3 @@
 from .cluster_serializer_integration_test import ClusterSerializerIntegrationTest
 from .cluster_serializer_unit_test import ClusterSerializerUnitTest
-from .cluster_serializer_functional_test import ClusterSerializerFunctionalTest
+from .cluster_serializer_functional_test import ClusterListFunctionalTest
